@@ -62,7 +62,7 @@ def gds_pagination(page_obj: Page):
 
     if page_obj.has_next():
         next = PaginationNext(
-            href=f"?page={page_obj.next_page_number()}",
+            href=f"?page={page_obj.next_page_number()}&greeting=hello",
             labelText="Next",
         ).__dict__  # type: ignore
 
@@ -76,7 +76,8 @@ def gds_pagination(page_obj: Page):
                 PaginationItems(
                     number=page_number,
                     current=page_number == page_obj.number,
-                    href=f"?page={page_number}",
+                    # href=f"?page={page_number}",
+                    href=f"?page={page_number}&greeting=hello"
                 )
             )
 
