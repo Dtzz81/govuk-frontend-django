@@ -10,6 +10,7 @@ from govuk_frontend_django.components.pagination import (
     PaginationNext,
     PaginationPrevious,
 )
+from example_project.example.views import get_query
 
 register = template.Library()
 
@@ -61,8 +62,15 @@ def gds_pagination(page_obj: Page):
         ).__dict__  # type: ignore
 
     if page_obj.has_next():
+        if get_query: # 'query' here is the Python variable from request.GET.get('q')
+            query_param = f"&q={get_query}"
+        else:
+            query_param = ""
+
         next = PaginationNext(
-            href=f"?page={page_obj.next_page_number()}&greeting=hello",
+
+            href=f"?page={{ page_obj.next_page_number }}{ query_param }",
+            # href=f"?page={page_obj.next_page_number()}&greeting=hello",
             labelText="Next",
         ).__dict__  # type: ignore
 
@@ -77,7 +85,8 @@ def gds_pagination(page_obj: Page):
                     number=page_number,
                     current=page_number == page_obj.number,
                     # href=f"?page={page_number}",
-                    href=f"?page={page_number}&greeting=hello"
+                    # href=f"?page={page_number}&greeting=hello"
+                    href=f"?page={page_number}&{query_param}"
                 )
             )
 

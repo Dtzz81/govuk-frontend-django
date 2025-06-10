@@ -32,11 +32,18 @@ class UserListingView(ListView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
+
+        search_query = self.request.GET.get('q', '')
+        #  Get the 'q' parameter from the request's GET parameters
+        # Use request.GET.get('q', '') to ensure it's always a string,
+
         context.update(
             user_columns=[
                 ("first_name", "First name"),
                 ("last_name", "Last name"),
-            ]
+            ],
+            # Add the search_query to the context
+            search_query=search_query
         )
         return context
 
@@ -53,6 +60,9 @@ class CustomForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
     )
 
+def get_query(request):
+    query = request.GET.get('q') # Query or None
+    context = {'query': query}
 
 def components_view(request):
     context = {}
