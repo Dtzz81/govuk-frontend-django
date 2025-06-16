@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView
 
+
 from govuk_frontend_django.components.accordion import GovUKAccordion
 from govuk_frontend_django.components.back_link import GovUKBackLink
 from govuk_frontend_django.components.breadcrumbs import (
@@ -41,6 +42,30 @@ class UserListingView(ListView):
 
         )
         return context
+
+from example_project.example.data_gen import generate_data
+
+def bucket_list_view(request):
+    # Optionally handle GET params for sorting or count
+    sort_by = request.GET.get("sort_by")
+    order = request.GET.get("order", "asc")
+    count = int(request.GET.get("count", 0))
+
+    # Get data from your function
+    bucket_list = generate_data(count=count, sort_by=sort_by, order=order)
+
+    # Pagination setup (optional, basic)
+    # For simplicity, no real pagination here but you can add later
+
+    context = {
+        "adventure_columns": [
+            ("country", "Country"),
+            ("hike", "Hike"),
+        ],
+        "object_list": bucket_list,
+        # "page_obj": ???  # skip pagination for now or implement later
+    }
+    return render(request, "example/bucket_list.html", context)
 
 
 class CustomForm(forms.Form):

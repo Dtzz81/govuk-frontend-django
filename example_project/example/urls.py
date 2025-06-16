@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
 
-from example_project.example.views import UserListingView, components_view
+
+from example_project.example.views import UserListingView, bucket_list_view, components_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", components_view, name="templatetags"),
     path("users/", UserListingView.as_view(), name="user-listing"),
+    path("bucket_list/", bucket_list_view, name="bucket-list"),
 ]

@@ -1,8 +1,4 @@
 
-# def generate_data(count=0):
-#     bucket_list = ["Iceland", "Thaiwan"]
-#     return bucket_list[:count]
-
 def generate_data(count=0, sort_by=None, order="asc"):
     bucket_list = [{ "country": "Tanzania", "hike": "Kili" },
                    { "country": "Switzerland", "hike": "Materhorn" },
@@ -20,3 +16,7 @@ def generate_data(count=0, sort_by=None, order="asc"):
 
 
 
+
+
+
+#and rng generator

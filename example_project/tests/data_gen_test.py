@@ -52,4 +52,10 @@ def test_data_set_sorted_in_descending_order_by_country():
     country_names = [item["country"] for item in result]
 
     # Assert
+    # look at this:
+#  assert result == [
+#     {
+#        "country": "Tanzania"
+#     }
+# ]
     assert all(country_names[i] >= country_names[i+1] for i in range(len(country_names) - 1))
