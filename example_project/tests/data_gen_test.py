@@ -44,3 +44,12 @@ def test_data_set_sorted_in_ascending_order_by_hike():
 
     # Assert
     assert all(hike_names[i] <= hike_names[i+1] for i in range(len(hike_names) - 1))
+
+def test_data_set_sorted_in_descending_order_by_country():
+
+    # Act
+    result = generate_data(sort_by="country", order="desc")
+    country_names = [item["country"] for item in result]
+
+    # Assert
+    assert all(country_names[i] >= country_names[i+1] for i in range(len(country_names) - 1))
