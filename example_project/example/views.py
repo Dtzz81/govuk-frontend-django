@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView
+from django.core.paginator import Paginator
 
 
 from govuk_frontend_django.components.accordion import GovUKAccordion
@@ -54,8 +55,11 @@ def bucket_list_view(request):
     # Get data from your function
     bucket_list = generate_data(count=count, sort_by=sort_by, order=order)
 
-    # Pagination setup (optional, basic)
-    # For simplicity, no real pagination here but you can add later
+    # Pagination setup :
+    paginator = Paginator(bucket_list, 2) # You can change '2' to any number of items per page
+    page_number = request.GET.get('page')
+
+    page_obj = paginator.get_page(page_number)
 
     context = {
         "adventure_columns": [
@@ -63,6 +67,7 @@ def bucket_list_view(request):
             ("hike", "Hike"),
         ],
         "object_list": bucket_list,
+        "page_obj": page_obj,               #
         # "page_obj": ???  # skip pagination for now or implement later
     }
     return render(request, "example/bucket_list.html", context)

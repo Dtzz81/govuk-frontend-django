@@ -9,9 +9,11 @@
 {% block header %}
     {% url "templatetags" as templatetags_url %}
     {% url "user-listing" as users_url %}
+    {% url "bucket-list" as bucket_list_url %}
     {% gds_header homepageUrl="/" serviceName="GOV.UK Frontend Django example project" serviceUrl="/" containerClasses="govuk-width-container" %}
         {% gds_header_nav_item_inline href=templatetags_url text="Template tags" %}
         {% gds_header_nav_item_inline href=users_url text="User list" %}
+        {% gds_header_nav_item_inline href=bucket_list_url text="Bucket list" %}
     {% endgds_header %}
 {% endblock header %}
 {% block body_end %}

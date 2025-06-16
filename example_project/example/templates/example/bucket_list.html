@@ -2,5 +2,5 @@
 {% load govuk_frontend_django %}
 {% block content %}
     {% gds_table columns=adventure_columns rows=object_list firstCellIsHeader=True %}
-    {% comment %} {% gds_pagination page_obj request %} {% endcomment %}
+    {% gds_pagination page_obj request %}
 {% endblock content %}
