@@ -51,11 +51,25 @@ def test_data_set_sorted_in_descending_order_by_country():
     result = generate_data(sort_by="country", order="desc")
     country_names = [item["country"] for item in result]
 
-    # Assert
-    # look at this:
-#  assert result == [
-#     {
-#        "country": "Tanzania"
-#     }
-# ]
     assert all(country_names[i] >= country_names[i+1] for i in range(len(country_names) - 1))
+
+
+def test_data_set_sorted_in_ascending_order_by_country():
+    # arrange
+    bucket_list = [{ "country": "Tanzania",     "hike": "Kili" },
+                   { "country": "Switzerland",  "hike": "Materhorn" },
+                   { "country": "Japan",        "hike": "Fujisan"},
+                   { "country": "UK",           "hike": "Snowdon"}]
+
+     # Act
+    expected_data = [
+    {"country": "Japan", "hike": "Fujisan"},
+    {"country": "Switzerland", "hike": "Materhorn"},
+    {"country": "Tanzania", "hike": "Kili"},
+    {"country": "UK", "hike": "Snowdon"}]
+
+
+    result = generate_data(sort_by="country", order="asc")
+
+    # Assert
+    assert result == expected_data

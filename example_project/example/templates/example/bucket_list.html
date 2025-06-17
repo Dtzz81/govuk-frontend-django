@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load govuk_frontend_django %}
 {% block content %}
+  <p>Sort by:
+    <a href="?sort_by=country&order=asc">Country ↑</a> |
+    <a href="?sort_by=country&order=desc">Country ↓</a> |
+    <a href="?sort_by=hike&order=asc">Hike ↑</a> |
+    <a href="?sort_by=hike&order=desc">Hike ↓</a> |
+    <a href="?">Clear Sort</a>
+  </p>
     {% gds_table columns=adventure_columns rows=object_list firstCellIsHeader=True %}
     {% gds_pagination page_obj request %}
 {% endblock content %}

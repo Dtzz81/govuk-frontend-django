@@ -52,11 +52,17 @@ def bucket_list_view(request):
     order = request.GET.get("order", "asc")
     count = int(request.GET.get("count", 0))
 
+    # Only apply sorting if sort_by is specified
+    if sort_by:
+        bucket_list = generate_data(count=count, sort_by=sort_by, order=order)
+    else:
+        bucket_list = generate_data(count=count)
+
     # Get data from your function
     bucket_list = generate_data(count=count, sort_by=sort_by, order=order)
 
     # Pagination setup :
-    paginator = Paginator(bucket_list, 2) # You can change '2' to any number of items per page
+    paginator = Paginator(bucket_list, 2) # 2 items per  page
     page_number = request.GET.get('page')
 
     page_obj = paginator.get_page(page_number)
@@ -66,9 +72,14 @@ def bucket_list_view(request):
             ("country", "Country"),
             ("hike", "Hike"),
         ],
-        "object_list": bucket_list,
-        "page_obj": page_obj,               #
-        # "page_obj": ???  # skip pagination for now or implement later
+        "object_list": page_obj.object_list,  # ONLY current page items here - INVESTIGATE
+        "page_obj": page_obj,
+        "sort_by": sort_by,    # Pass sorting info so template can keep track
+        "order": order,
+        # Passing sort_by and order helps build links in the template that preserve sorting across pagination.
+        # "object_list": bucket_list commented to get only 2 items per page
+
+
     }
     return render(request, "example/bucket_list.html", context)
 
