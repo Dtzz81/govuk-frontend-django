@@ -69,17 +69,13 @@ def bucket_list_view(request):
 
     context = {
         "adventure_columns": [
-            ("country", "Country"),
-            ("hike", "Hike"),
+            ("location", "Location"),
+            ("mountain", "Mountain"),
         ],
         "object_list": page_obj.object_list,  # ONLY current page items here - INVESTIGATE
         "page_obj": page_obj,
-        "sort_by": sort_by,    # Pass sorting info so template can keep track
+        "sort_by": sort_by,
         "order": order,
-        # Passing sort_by and order helps build links in the template that preserve sorting across pagination.
-        # "object_list": bucket_list commented to get only 2 items per page
-
-
     }
     return render(request, "example/bucket_list.html", context)
 

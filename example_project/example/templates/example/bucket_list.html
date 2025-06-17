@@ -2,10 +2,10 @@
 {% load govuk_frontend_django %}
 {% block content %}
   <p>Sort by:
-    <a href="?sort_by=country&order=asc">Country ↑</a> |
-    <a href="?sort_by=country&order=desc">Country ↓</a> |
-    <a href="?sort_by=hike&order=asc">Hike ↑</a> |
-    <a href="?sort_by=hike&order=desc">Hike ↓</a> |
+    <a href="?sort_by=location&order=asc">Location ↑</a> |
+    <a href="?sort_by=location&order=desc">Location ↓</a> |
+    <a href="?sort_by=mountain&order=asc">Mountain ↑</a> |
+    <a href="?sort_by=mountain&order=desc">Mountain ↓</a> |
     <a href="?">Clear Sort</a>
   </p>
     {% gds_table columns=adventure_columns rows=object_list firstCellIsHeader=True %}

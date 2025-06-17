@@ -1,9 +1,9 @@
 
 def generate_data(count=0, sort_by=None, order="asc"):
-    bucket_list = [{ "country": "Tanzania", "hike": "Kili" },
-                   { "country": "Switzerland", "hike": "Materhorn" },
-                   {"country": "Japan", "hike": "Fujisan"},
-                   {"country": "UK", "hike": "Snowdon"}]
+    bucket_list = [{ "location": "Tanzania", "mountain": "Kili" },
+                   { "location": "Switzerland", "mountain": "Materhorn" },
+                   {"location": "Japan", "mountain": "Fujisan"},
+                   {"location": "UK", "mountain": "Snowdon"}]
 
 
     if count == 0:

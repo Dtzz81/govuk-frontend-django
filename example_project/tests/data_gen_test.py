@@ -25,51 +25,51 @@ def test_each_item_has_value_and_keys():
 
     # Assert
     for item in result:
-        assert "country" in item and "hike" in item
+        assert "location" in item and "mountain" in item
 
-def test_data_set_sorted_in_ascending_order_by_country():
+def test_data_set_sorted_in_ascending_order_by_location():
 
     # Act
-    result = generate_data(sort_by="country")
-    country_names = [item["country"] for item in result]
+    result = generate_data(sort_by="location")
+    location_names = [item["location"] for item in result]
 
     # Assert
-    assert all(country_names[i] <= country_names[i+1] for i in range(len(country_names) - 1))
+    assert all(location_names[i] <= location_names[i+1] for i in range(len(location_names) - 1))
 
-def test_data_set_sorted_in_ascending_order_by_hike():
+def test_data_set_sorted_in_ascending_order_by_mountain():
 
     # Act
-    result = generate_data(sort_by="hike")
-    hike_names = [item["hike"] for item in result]
+    result = generate_data(sort_by="mountain")
+    mountain_names = [item["mountain"] for item in result]
 
     # Assert
-    assert all(hike_names[i] <= hike_names[i+1] for i in range(len(hike_names) - 1))
+    assert all(mountain_names[i] <= mountain_names[i+1] for i in range(len(mountain_names) - 1))
 
-def test_data_set_sorted_in_descending_order_by_country():
+def test_data_set_sorted_in_descending_order_by_location():
 
     # Act
-    result = generate_data(sort_by="country", order="desc")
-    country_names = [item["country"] for item in result]
+    result = generate_data(sort_by="location", order="desc")
+    location_names = [item["location"] for item in result]
 
-    assert all(country_names[i] >= country_names[i+1] for i in range(len(country_names) - 1))
+    assert all(location_names[i] >= location_names[i+1] for i in range(len(location_names) - 1))
 
 
-def test_data_set_sorted_in_ascending_order_by_country():
+def test_data_set_sorted_in_ascending_order_by_location():
     # arrange
-    bucket_list = [{ "country": "Tanzania",     "hike": "Kili" },
-                   { "country": "Switzerland",  "hike": "Materhorn" },
-                   { "country": "Japan",        "hike": "Fujisan"},
-                   { "country": "UK",           "hike": "Snowdon"}]
+    bucket_list = [{ "location": "Tanzania",     "mountain": "Kili" },
+                   { "location": "Switzerland",  "mountain": "Materhorn" },
+                   { "location": "Japan",        "mountain": "Fujisan"},
+                   { "location": "UK",           "mountain": "Snowdon"}]
 
      # Act
     expected_data = [
-    {"country": "Japan", "hike": "Fujisan"},
-    {"country": "Switzerland", "hike": "Materhorn"},
-    {"country": "Tanzania", "hike": "Kili"},
-    {"country": "UK", "hike": "Snowdon"}]
+    {"location": "Japan", "mountain": "Fujisan"},
+    {"location": "Switzerland", "mountain": "Materhorn"},
+    {"location": "Tanzania", "mountain": "Kili"},
+    {"location": "UK", "mountain": "Snowdon"}]
 
 
-    result = generate_data(sort_by="country", order="asc")
+    result = generate_data(sort_by="location", order="asc")
 
     # Assert
     assert result == expected_data
