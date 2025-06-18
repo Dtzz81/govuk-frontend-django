@@ -1,7 +1,7 @@
-
+# from http import client
 import pytest
 from example.data_gen import generate_data
-
+from example import views
 
 def test_function_returns_a_list():
     # Arrange
@@ -64,6 +64,8 @@ def test_data_set_sorted_in_ascending_order_by_location():
      # Act
     expected_data = [
     {"location": "Japan", "mountain": "Fujisan"},
+    {'location': 'Nepal', 'mountain': 'Annapurna'},
+    {'location': 'Pakistan', 'mountain': 'Nanga Parbat'},
     {"location": "Switzerland", "mountain": "Materhorn"},
     {"location": "Tanzania", "mountain": "Kili"},
     {"location": "UK", "mountain": "Snowdon"}]
@@ -73,3 +75,38 @@ def test_data_set_sorted_in_ascending_order_by_location():
 
     # Assert
     assert result == expected_data
+
+#order =123 what i want it to do show in default or exception
+
+# wrong params, handle errors
+#input validation
+#how many to show
+
+# def test_param_sort_by_equals_name():
+# #     # http://localhost:8000/bucket_list/?sort_by=name&order=asc
+
+# #     # arrange
+#         sort_by = "name"
+# #     # act
+
+# #     # assert
+# #     assert result == expected
+#         pass
+
+# import pytest
+# from django.urls import reverse
+
+
+# def test_bucket_list_view_no_params(requests):
+#     # --- Arrange ---
+
+#     url = reverse("/bucket_list")
+
+#     # --- Act ---
+#     response = client.get(url)
+
+#     # --- Assert ---
+#     expected = 200
+#     result = response.status_code
+#     assert expected == result
+

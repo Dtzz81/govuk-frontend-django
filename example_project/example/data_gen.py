@@ -3,7 +3,9 @@ def generate_data(count=0, sort_by=None, order="asc"):
     bucket_list = [{ "location": "Tanzania", "mountain": "Kili" },
                    { "location": "Switzerland", "mountain": "Materhorn" },
                    {"location": "Japan", "mountain": "Fujisan"},
-                   {"location": "UK", "mountain": "Snowdon"}]
+                   {"location": "UK", "mountain": "Snowdon"},
+                   {'location': 'Nepal', 'mountain': 'Annapurna'},
+                   {'location': 'Pakistan', 'mountain': 'Nanga Parbat'},]
 
 
     if count == 0:
@@ -12,7 +14,7 @@ def generate_data(count=0, sort_by=None, order="asc"):
         else:
             return bucket_list  # Return unsorted
     else:
-        return bucket_list[1:-1]
+        return bucket_list[1:3]
 
 
 
