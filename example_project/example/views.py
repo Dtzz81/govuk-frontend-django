@@ -58,20 +58,16 @@ def bucket_list_view(request):
    count = int(request.GET.get("count", 0))
 
 
-   # Only apply sorting if sort_by is specified
-
    try:
        if sort_by:
            bucket_list = generate_data(count=count, sort_by=sort_by, order=order)
        else:
            bucket_list = generate_data(count=count)
    except (KeyError, ValueError, TypeError):
-       # If the sort field doesn't exist or something goes wrong, fallback
        bucket_list = generate_data(count=count)
 
 
 
-   # Pagination setup :
    paginator = Paginator(bucket_list, 2) # 2 items per  page
    page_number = request.GET.get('page')
 
@@ -84,7 +80,7 @@ def bucket_list_view(request):
            ("location", "Location"),
            ("mountain", "Mountain"),
        ],
-       "object_list": page_obj.object_list,  # ONLY current page items here - INVESTIGATE
+       "object_list": page_obj.object_list,  
        "page_obj": page_obj,
        "sort_by": sort_by,
        "order": order,
