@@ -21,11 +21,11 @@ def generate_data(count=0, sort_by=None, order=None):
       else:
          final_list = bucket_list
    except (KeyError, ValueError, TypeError):
- 
+
       return bucket_list
 
    if count == 0 or count > len(final_list):
       return final_list
    else:
-      return final_list[:count] #slice from beginning
+      return final_list[:count] 
 

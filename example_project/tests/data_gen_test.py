@@ -76,9 +76,9 @@ def test_gen_data_returns_entire_list_when_count_is_not_valid():
 
 
 
-def test_gen_data_returns_entire_bucket_list_when_sort_by_is_not_valid():
+def test_gen_data_returns_entire_bucket_list_when_count_is_negative_float():
 
-    invalid_key = "name"
+    invalid_count = -9.4
 
     expected = [
         {"location": "Tanzania", "mountain": "Kili"},
@@ -89,6 +89,24 @@ def test_gen_data_returns_entire_bucket_list_when_sort_by_is_not_valid():
         {"location": "Pakistan", "mountain": "Nanga Parbat"},
     ]
 
-    result = generate_data(sort_by=invalid_key)
+    result = generate_data(count=invalid_count)
+
+    assert result == expected
+
+
+def test_gen_data_returns_entire_bucket_list_when_query_params_have_a_typo():
+
+    order = "dasc"
+
+    expected = [
+        {"location": "Tanzania", "mountain": "Kili"},
+        {"location": "Switzerland", "mountain": "Materhorn"},
+        {"location": "Japan", "mountain": "Fujisan"},
+        {"location": "UK", "mountain": "Snowdon"},
+        {"location": "Nepal", "mountain": "Annapurna"},
+        {"location": "Pakistan", "mountain": "Nanga Parbat"},
+    ]
+
+    result = generate_data(order="dasc")
 
     assert result == expected
